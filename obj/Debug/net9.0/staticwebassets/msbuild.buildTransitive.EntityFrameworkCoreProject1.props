@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\EntityFrameworkCoreProject1.props" />
-</Project>
