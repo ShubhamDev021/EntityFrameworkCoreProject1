@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public int NumberOfPages { get; set; }
         public bool IsActive { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }
