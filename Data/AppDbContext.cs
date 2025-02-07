@@ -11,5 +11,6 @@ namespace EntityFrameworkCoreProject1.Data
 
         //To inform DB Context to use the table in Entity Framework Core, use DbSet property as below
         public DbSet<Book> Books { get; set; }
+        public DbSet<Language> Languages { get; set; }
     }
 }
