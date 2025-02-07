@@ -30,15 +30,6 @@ namespace EntityFrameworkCoreProject1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Column1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Column2")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Column3")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
