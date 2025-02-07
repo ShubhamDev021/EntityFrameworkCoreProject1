@@ -115,9 +115,15 @@ namespace EntityFrameworkCoreProject1.Controllers
         [HttpGet("{name}")]
         public async Task<IActionResult> GetCurrencyByNameAndQueryDescriptionAsync([FromRoute] string name, [FromQuery] string? description)
         {
-            var result = await _appDbContext.Currencies.FirstOrDefaultAsync(
-                c => c.Title==name && (description.IsNullOrEmpty() || c.Description==description)
-            );
+            //to get single record
+            //var result = await _appDbContext.Currencies.FirstOrDefaultAsync(
+            //    c => c.Title==name && (string.IsNullOrEmpty(description) || c.Description==description)
+            //);
+
+            //to get multiple records, we use ToList method
+            var result = await _appDbContext.Currencies.Where(
+                c => c.Title == name && (string.IsNullOrEmpty(description) || c.Description == description)
+            ).ToListAsync();
 
             return Ok(result);
         }
