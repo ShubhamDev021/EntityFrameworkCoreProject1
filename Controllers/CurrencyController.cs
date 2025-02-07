@@ -95,7 +95,11 @@ namespace EntityFrameworkCoreProject1.Controllers
             //var result = await _appDbContext.Currencies.Where(c => c.Title == name).SingleAsync();
 
             //using SingleOrDefault method: it doesn't generates error if record doesn't found while generates error if multiple records are found
-            var result = await _appDbContext.Currencies.Where(c => c.Title == name).SingleOrDefaultAsync();
+            //less efficient as it filters firstly according to where clause and then applies single or default function on that dataset
+            //var result = await _appDbContext.Currencies.Where(c => c.Title == name).SingleOrDefaultAsync();
+
+            //more efficient way as it matches condition from record_1, then record_2 and so on and when condition meets, it stops further checking and just return the result
+            var result = await _appDbContext.Currencies.SingleOrDefaultAsync(c => c.Title == name);
 
             return Ok(result);
         }
