@@ -36,6 +36,9 @@ namespace EntityFrameworkCoreProject1.Migrations
                     b.Property<int>("Column2")
                         .HasColumnType("int");
 
+                    b.Property<int>("Column3")
+                        .HasColumnType("int");
+
                     b.Property<int>("Column4")
                         .HasColumnType("int");
 
