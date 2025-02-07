@@ -39,9 +39,6 @@ namespace EntityFrameworkCoreProject1.Migrations
                     b.Property<int>("Column3")
                         .HasColumnType("int");
 
-                    b.Property<int>("Column4")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -61,7 +58,7 @@ namespace EntityFrameworkCoreProject1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 #pragma warning restore 612, 618
         }
