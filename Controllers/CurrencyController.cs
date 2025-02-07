@@ -61,21 +61,41 @@ namespace EntityFrameworkCoreProject1.Controllers
 
         [HttpGet("{name}")]
         //synchronous call to get data by using where clause
-        public IActionResult GetCurrencyByName([FromRoute] string name)
+        //public IActionResult GetCurrencyByName([FromRoute] string name)
+        //{
+        //    //filtering data using where condition to fetch records
+
+        //    //using First method: it generates error if record doesn't found
+        //    //var result = _appDbContext.Currencies.Where(c => c.Title==name).First();
+
+        //    //using FirstOrDefault method: it doesn't generates error if record doesn't found
+        //    //var result = _appDbContext.Currencies.Where(c => c.Title == name).FirstOrDefault();
+
+        //    //using Single method: it generates error if multiple records are found
+        //    //var result = _appDbContext.Currencies.Where(c => c.Title == name).Single();
+
+        //    //using SingleOrDefault method: it doesn't generates error if record doesn't found while generates error if multiple records are found
+        //    var result = _appDbContext.Currencies.Where(c => c.Title == name).SingleOrDefault();
+
+        //    return Ok(result);
+        //}
+
+        //asynchronous call to get data by using where clause
+        public async Task<IActionResult> GetCurrencyByNameAsync([FromRoute] string name)
         {
-            //filtering data using where condition to fetch records
+            //    //filtering data using where condition to fetch records
 
             //using First method: it generates error if record doesn't found
-            //var result = _appDbContext.Currencies.Where(c => c.Title==name).First();
+            //var result = await _appDbContext.Currencies.Where(c => c.Title == name).FirstAsync();
 
             //using FirstOrDefault method: it doesn't generates error if record doesn't found
-            //var result = _appDbContext.Currencies.Where(c => c.Title == name).FirstOrDefault();
+            //var result = await _appDbContext.Currencies.Where(c => c.Title == name).FirstOrDefaultAsync();
 
             //using Single method: it generates error if multiple records are found
-            //var result = _appDbContext.Currencies.Where(c => c.Title == name).Single();
+            //var result = await _appDbContext.Currencies.Where(c => c.Title == name).SingleAsync();
 
-            //using SingleOrDefault method: it doesn't generates error if record doesn't found
-            var result = _appDbContext.Currencies.Where(c => c.Title == name).SingleOrDefault();
+            //using SingleOrDefault method: it doesn't generates error if record doesn't found while generates error if multiple records are found
+            var result = await _appDbContext.Currencies.Where(c => c.Title == name).SingleOrDefaultAsync();
 
             return Ok(result);
         }
