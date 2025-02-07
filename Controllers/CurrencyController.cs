@@ -46,9 +46,16 @@ namespace EntityFrameworkCoreProject1.Controllers
 
         [HttpGet("{id}")]
         //synchronous call to get data by Primary key
-        public IActionResult GetCurrencyById([FromRoute] int id)
+        //public IActionResult GetCurrencyById([FromRoute] int id)
+        //{
+        //    var result = _appDbContext.Currencies.Find(id);
+        //    return Ok(result);
+        //}
+
+        //asynchronous call to get data by Primary key
+        public async Task<IActionResult> GetCurrencyByIdAsync([FromRoute] int id)
         {
-            var result = _appDbContext.Currencies.Find(id);
+            var result = await _appDbContext.Currencies.FindAsync(id);
             return Ok(result);
         }
     }
