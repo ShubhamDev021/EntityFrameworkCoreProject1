@@ -103,5 +103,12 @@ namespace EntityFrameworkCoreProject1.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("{name}/{description}")]
+        public async Task<IActionResult> GetCurrencyByNameAndDescriptionAsync([FromRoute] string name, [FromRoute] string description)
+        {
+            var result = await _appDbContext.Currencies.FirstOrDefaultAsync(c => c.Title==name && c.Description==description);
+            return Ok(result);
+        }
     }
 }
