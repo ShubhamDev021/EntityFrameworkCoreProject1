@@ -1,5 +1,6 @@
 ﻿using EntityFrameworkCoreProject1.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,14 @@ namespace EntityFrameworkCoreProject1.Controllers
             //method 2
             var result = await (from currencies in _appDbContext.Currencies
                           select currencies).ToListAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        //synchronous call to get data by Primary key
+        public IActionResult GetCurrencyById([FromRoute] int id)
+        {
+            var result = _appDbContext.Currencies.Find(id);
             return Ok(result);
         }
     }
