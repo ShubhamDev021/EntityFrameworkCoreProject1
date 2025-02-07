@@ -44,7 +44,7 @@ namespace EntityFrameworkCoreProject1.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         //synchronous call to get data by Primary key
         //public IActionResult GetCurrencyById([FromRoute] int id)
         //{
@@ -56,6 +56,27 @@ namespace EntityFrameworkCoreProject1.Controllers
         public async Task<IActionResult> GetCurrencyByIdAsync([FromRoute] int id)
         {
             var result = await _appDbContext.Currencies.FindAsync(id);
+            return Ok(result);
+        }
+
+        [HttpGet("{name}")]
+        //synchronous call to get data by using where clause
+        public IActionResult GetCurrencyByName([FromRoute] string name)
+        {
+            //filtering data using where condition to fetch records
+
+            //using First method: it generates error if record doesn't found
+            //var result = _appDbContext.Currencies.Where(c => c.Title==name).First();
+
+            //using FirstOrDefault method: it doesn't generates error if record doesn't found
+            //var result = _appDbContext.Currencies.Where(c => c.Title == name).FirstOrDefault();
+
+            //using Single method: it generates error if multiple records are found
+            //var result = _appDbContext.Currencies.Where(c => c.Title == name).Single();
+
+            //using SingleOrDefault method: it doesn't generates error if record doesn't found
+            var result = _appDbContext.Currencies.Where(c => c.Title == name).SingleOrDefault();
+
             return Ok(result);
         }
     }
