@@ -137,6 +137,15 @@ namespace EntityFrameworkCoreProject1.Controllers
             //improve readability of code
             var results = await _appDbContext.Currencies
                 .Where(c => ids.Contains(c.Id))
+                //here we are doing mapping
+                //that 'Id' column of Curreny object = c.Id which means Id itself i.e. no change in data
+                //and 'Title' column of Curreny object = c.Title which means Title itself i.e. no change in data
+                //so, data will same as above
+                .Select(c => new Currency()
+                {
+                    Id = c.Id,
+                    Title = c.Title
+                })
                 .ToListAsync();
 
             return Ok(results);
