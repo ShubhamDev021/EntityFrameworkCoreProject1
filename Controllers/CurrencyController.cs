@@ -141,10 +141,16 @@ namespace EntityFrameworkCoreProject1.Controllers
                 //that 'Id' column of Curreny object = c.Id which means Id itself i.e. no change in data
                 //and 'Title' column of Curreny object = c.Title which means Title itself i.e. no change in data
                 //so, data will same as above
-                .Select(c => new Currency()
+                //.Select(c => new Currency()
+                //{
+                //    Id = c.Id,
+                //    Title = c.Title
+                //})
+                //here we are doing mapping such that we are creating a new object and then sending only CurrencyId and CurrencyTitle in response
+                .Select(c => new
                 {
-                    Id = c.Id,
-                    Title = c.Title
+                    CurrencyId = c.Id,
+                    CurrencyTitle = c.Title
                 })
                 .ToListAsync();
 
