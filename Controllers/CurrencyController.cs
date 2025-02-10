@@ -132,7 +132,13 @@ namespace EntityFrameworkCoreProject1.Controllers
         [HttpPost("all")]
         public async Task<IActionResult> GetCurrenciesByIdsAsync([FromBody] List<int> ids)
         {
-            var results = await _appDbContext.Currencies.Where(c => ids.Contains(c.Id)).ToListAsync();
+            //var results = await _appDbContext.Currencies.Where(c => ids.Contains(c.Id)).ToListAsync();
+
+            //improve readability of code
+            var results = await _appDbContext.Currencies
+                .Where(c => ids.Contains(c.Id))
+                .ToListAsync();
+
             return Ok(results);
         }
     }
