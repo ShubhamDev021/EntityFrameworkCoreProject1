@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EntityFrameworkCoreProject1.Controllers
@@ -126,6 +127,13 @@ namespace EntityFrameworkCoreProject1.Controllers
             ).ToListAsync();
 
             return Ok(result);
+        }
+
+        [HttpPost("all")]
+        public async Task<IActionResult> GetCurrenciesByIdsAsync([FromBody] List<int> ids)
+        {
+            var results = await _appDbContext.Currencies.Where(c => ids.Contains(c.Id)).ToListAsync();
+            return Ok(results);
         }
     }
 }
